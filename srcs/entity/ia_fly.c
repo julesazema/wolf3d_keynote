@@ -29,7 +29,6 @@ void ia_fly(entity_t *entity)
         on_entity_death(entity);
         return;
     }
-    scale_sprite(entity->sprite->name, 0.4f);
     create_clock("clock_fly", 0.2f);
     create_clock("touch", 2.0f);
     if (is_clock_elapsed("touch")) {
@@ -41,6 +40,7 @@ void ia_fly(entity_t *entity)
     }
     if (is_clock_elapsed("clock_fly"))
         move_fly(entity);
+    entity->z = TILE_SIZE;
     entity->spritesheet.current_step++;
     update_animation(entity->sprite, &entity->spritesheet);
 }

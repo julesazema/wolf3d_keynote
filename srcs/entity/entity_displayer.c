@@ -70,16 +70,16 @@ void display_entities(render_t *render)
     list_t *next;
     entity_t *current;
     room_t *current_room;
-    int elapsed;
+    //int elapsed;
 
-    create_clock("entity_lifetime", 0.1f);
-    elapsed = is_clock_elapsed("entity_lifetime");
+    create_clock("entity_lifetime", 0.01f);
+    //elapsed = is_clock_elapsed("entity_lifetime");
     current_room = get_current_room(get_run());
     list = current_room->entities;
     while (list) {
         next = list->next;
         current = list->data;
-        if (elapsed)
+        //if (elapsed)
             current->life_time += 1;
         draw_entity(render, current);
         list = next;

@@ -32,13 +32,13 @@ void ia_red_fly(entity_t *entity)
     entity->spritesheet.current_step++;
     create_clock("touch", 2.0f);
     if (is_clock_elapsed("touch"))
-        if (entity->x < get_player()->x + 30 && entity->x > get_player()->x -
-            30 && entity->y < get_player()->y + 20 &&
+        if (entity->x < get_player()->x + 30 &&
+            entity->x > get_player()->x - 30 &&
+            entity->y < get_player()->y + 20 &&
             entity->y > get_player()->y - 20)
                 damage_player(get_player(), 1);
-    if (entity->life_time % 10 == 0) {
+    if (entity->life_time % 10 == 0)
         move_red_fly(entity);
-    }
-    scale_sprite(entity->sprite->name, 0.4f);
+    entity->z = TILE_SIZE;
     update_animation(entity->sprite, &entity->spritesheet);
 }

@@ -19,7 +19,8 @@ static void drop_item(entity_t *entity)
 
 void ia_fire(entity_t *entity)
 {
-    entity->spritesheet.current_step = 5 - entity->life;
+    if (entity->life_time % 5 == 0)
+        entity->spritesheet.current_step++;
     if (entity->life <= 0) {
         if (get_random(5) == 0)
             drop_item(entity);
