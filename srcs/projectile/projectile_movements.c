@@ -28,6 +28,21 @@ int is_in_range(double size, double x, double x2)
     return (fabs(x - x2) <= size);
 }
 
+static sfVector2f get_sprite_scale(entity_t *entity)
+{
+    sfVector2u texture_size;
+    sfVector2f result;
+
+    texture_size = sfTexture_getSize(entity->sprite->resource->data);
+    result.x = (float) texture_size.x / entity->spritesheet.nb_cols;
+    result.y = (float) texture_size.y / entity->spritesheet.nb_rows;
+    result.x *= sfSprite_getScale(entity->sprite->sprite).x;
+    result.y *= sfSprite_getScale(entity->sprite->sprite).y;
+    result.x *= TILE_SIZE_INV;
+    result.y *= TILE_SIZE_INV;
+    return (result);
+}
+
 static entity_t *get_ennemy(tear_t *tear)
 {
     list_t *list;
@@ -38,11 +53,12 @@ static entity_t *get_ennemy(tear_t *tear)
     list = get_current_room(get_run())->entities;
     while (list) {
         tmp = list->data;
+        printf("get_sprite_scale(tmp).y :\n %.1f\n%.1f\n", get_sprite_scale(tmp).x, get_sprite_scale(tmp).y);
         if (tmp->floor_id == current_room->floor_id &&
             tmp->room_id == current_room->id &&
-            is_in_range(10, tmp->x, tear->x) &&
-            is_in_range(10, tmp->y, tear->y) &&
-            is_in_range(10, tmp->z, tear->z)) {
+            is_in_range(get_sprite_scale(tmp).x, tmp->x, tear->x) &&
+            is_in_range(get_sprite_scale(tmp).x, tmp->y, tear->y) &&
+            is_in_range(get_sprite_scale(tmp).y, tmp->z, tear->z)) {
             return (tmp);
         }
         list = list->next;
