@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 
+#include "messages.h"
 #include "actionbar.h"
 #include "player.h"
 #include "raycaster.h"
@@ -62,7 +63,10 @@ void launch_floor(int floor_index)
     get_run()->current_floor = floor_index;
     if (get_run()->nb_floors <= 0)
         return (ft_putstr_fd(2, "no_floors_defined: Cannot launch player"));
-    display_action("BASEMENT I", 1.5);
+    if (get_run()->nb_floors > 20)
+        display_action((char *)msg_b[20], 1.5);
+    else
+        display_action((char *)msg_b[get_run()->nb_floors - 1], 1.5);
     launch_room(0);
 }
 

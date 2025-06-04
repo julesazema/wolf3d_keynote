@@ -13,8 +13,10 @@
 static int is_boss(entity_type_t type)
 {
     if (type == E_LOKI)
-        return (1);
-    return (0);
+        return 1;
+    if (type == E_KING_FLY)
+        return 1;
+    return 0;
 }
 
 void unlock_next_floor(room_t *current)

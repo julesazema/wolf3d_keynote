@@ -21,5 +21,6 @@ void ia_ladder(entity_t *entity)
         generate_floor(get_run(), get_run()->nb_floors - 1);
         get_run()->current_floor++;
         get_run()->current_room = 0;
+        launch_floor(get_run()->current_floor);
     }
 }
