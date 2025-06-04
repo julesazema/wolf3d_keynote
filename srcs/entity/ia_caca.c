@@ -50,6 +50,7 @@ void ia_caca(entity_t *entity)
             player_y = get_player()->y;
         }
     }
+    entity->z = TILE_SIZE / 4;
     death_caca(entity);
     if (player_x != -1 && player_y != -1 &&
             (move_caca(entity, player_x, player_y) == 1)) {

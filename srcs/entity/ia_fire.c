@@ -5,6 +5,8 @@
 ** ia_fire
 */
 
+#include <stdio.h>
+
 #include "collectible.h"
 #include "entity.h"
 #include "particle.h"
@@ -19,8 +21,10 @@ static void drop_item(entity_t *entity)
 
 void ia_fire(entity_t *entity)
 {
-    if (entity->life_time % 5 == 0)
-        entity->spritesheet.current_step++;
+    if ((entity->life_time / 5 % 8) < 4)
+        entity->spritesheet.current_step = (entity->life_time / 5 % 8);
+    else
+        entity->spritesheet.current_step = 8 - ((entity->life_time / 5 % 8));
     if (entity->life <= 0) {
         if (get_random(5) == 0)
             drop_item(entity);
