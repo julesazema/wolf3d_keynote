@@ -42,3 +42,14 @@ double calculate_projected_distance(render_t *render,
     (void)world_z;
     return (cam_x);
 }
+
+double get_player_dist(double world_x, double world_y, double world_z)
+{
+    player_t *player = get_player();
+    double rel_x = world_x - player->x;
+    double rel_y = world_y - player->y;
+    double cam_x = rel_x * cos(-player->yaw) - rel_y * sin(-player->yaw);
+
+    (void)world_z;
+    return (cam_x);
+}

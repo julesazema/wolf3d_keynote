@@ -69,6 +69,8 @@ int is_entity_outside_room(entity_t *entity);
 
 void on_entity_death(entity_t *entity);
 
+sfVector2f get_sprite_scale(entity_t *entity);
+
 void ia_slime(entity_t *);
 void ia_blob(entity_t *);
 void ia_loki(entity_t *);

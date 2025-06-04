@@ -90,6 +90,7 @@ sfVector2f project_point(render_t *render,
     double world_x, double world_y, double world_z);
 double calculate_projected_distance(render_t *render,
     double world_x, double world_y, double world_z);
+double get_player_dist(double world_x, double world_y, double world_z);
 
 enum obstacle_type_s parse_obstacle_type(int x, int y);
 
