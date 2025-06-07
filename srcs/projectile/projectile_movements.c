@@ -33,17 +33,19 @@ static entity_t *get_ennemy(tear_t *tear)
     list_t *list;
     entity_t *tmp;
     room_t *current_room;
+    sfVector2f size;
 
     current_room = get_current_room(get_run());
     list = get_current_room(get_run())->entities;
     while (list) {
         tmp = list->data;
         if (tmp->floor_id == current_room->floor_id &&
-            tmp->room_id == current_room->id &&
-            is_in_range(get_sprite_scale(tmp).x, tmp->x, tear->x) &&
-            is_in_range(get_sprite_scale(tmp).x, tmp->y, tear->y) &&
-            is_in_range(get_sprite_scale(tmp).y, tmp->z, tear->z)) {
-            return (tmp);
+            tmp->room_id == current_room->id) {
+            size = get_sprite_scale(tmp);
+            if (is_in_range(size.x, tmp->x, tear->x) &&
+                is_in_range(size.x, tmp->y, tear->y) &&
+                is_in_range(size.y, tmp->z + size.y / 2, tear->z))
+                return (tmp);
         }
         list = list->next;
     }

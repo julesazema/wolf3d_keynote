@@ -39,6 +39,6 @@ void ia_red_fly(entity_t *entity)
                 damage_player(get_player(), 1);
     if (entity->life_time % 10 == 0)
         move_red_fly(entity);
-    entity->z = TILE_SIZE;
+    entity->z = TILE_SIZE / 3.0f;
     update_animation(entity->sprite, &entity->spritesheet);
 }

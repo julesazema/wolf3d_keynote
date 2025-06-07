@@ -28,8 +28,8 @@ void ia_fatty(entity_t *entity)
         on_entity_death(entity);
         return;
     }
-    entity->z = TILE_SIZE / 2;
-    if (is_clock_elapsed("clock_fatty")) {
+    entity->z = TILE_SIZE / -16.0f;
+    if ((entity->life_time * 100) % 1000 == 0) {
         entity->spritesheet.current_step++;
         if (entity->x < get_player()->x + 20 && entity->x > get_player()->x -
             20 && entity->y < get_player()->y + 10 &&

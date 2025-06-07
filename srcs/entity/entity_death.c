@@ -13,16 +13,16 @@
 static int is_boss(entity_type_t type)
 {
     if (type == E_LOKI)
-        return 1;
+        return (1);
     if (type == E_KING_FLY)
-        return 1;
-    return 0;
+        return (1);
+    return (0);
 }
 
 void unlock_next_floor(room_t *current)
 {
-    create_entity(current, E_LADDER, (sfVector3f){(current->width / 2) *
-        TILE_SIZE, (current->height / 2) * TILE_SIZE, 40});
+    create_entity(current, E_LADDER, (sfVector3f){((float)current->width / 2) *
+        TILE_SIZE, ((float)current->height / 2) * TILE_SIZE, -20});
     current->finished = 1;
 }
 

@@ -40,7 +40,7 @@ void ia_fly(entity_t *entity)
     }
     if (is_clock_elapsed("clock_fly"))
         move_fly(entity);
-    entity->z = TILE_SIZE;
+    entity->z = TILE_SIZE / 3.0f;
     entity->spritesheet.current_step++;
     update_animation(entity->sprite, &entity->spritesheet);
 }

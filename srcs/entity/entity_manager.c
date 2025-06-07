@@ -13,11 +13,14 @@
 
 static void setup_entity_sprite(entity_t *dest, spritesheet_t sheet)
 {
+    sfVector2u size;
     char name[16];
 
     dest->spritesheet = sheet;
-    dest->sprite = create_sprite(ft_itoad(get_random(4096),
+    dest->sprite = create_sprite(ft_itoad(get_random(4096 * 2),
         name, 16), 0, 0, sheet.resource_name);
+    size = sfTexture_getSize(dest->sprite->resource->data);
+    sfSprite_setOrigin(dest->sprite->sprite, (sfVector2f) {size.x / 2, size.y});
 }
 
 static void setup_entity(entity_t *entity, const entity_model_t *model,
